@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BTC Mining Site</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js"></script>
+</head>
+<body>
+
+    <div class="container">
+        <h1>BTC Mining Platform</h1>
+        <div id="auth-section">
+            <h2>Login / Register</h2>
+            <input type="email" id="email" placeholder="Email">
+            <input type="password" id="password" placeholder="Password">
+            <button onclick="register()">Register</button>
+            <button onclick="login()">Login</button>
+        </div>
+
+        <div id="dashboard" style="display: none;">
+            <h2>Welcome, <span id="username"></span></h2>
+            <p>Registration Date: <span id="regDate"></span></p>
+            <p>Last Login: <span id="loginDate"></span></p>
+
+            <h3>Account Balance</h3>
+            <p>Deposit: $<span id="deposit">0</span></p>
+            <p>Pending: $<span id="pending">0</span></p>
+            <p>Withdrawals: $<span id="withdrawals">0</span></p>
+            <p>Earnings: $<span id="earnings">0</span></p>
+
+            <h3>Deposit & Withdraw</h3>
+            <input type="number" id="amount" placeholder="Amount">
+            <button onclick="deposit()">Deposit</button>
+            <button onclick="withdraw()">Withdraw</button>
+
+            <h3>Live Trading Chart</h3>
+            <div class="tradingview-widget-container">
+                <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+                <script type="text/javascript">
+                    new TradingView.widget({
+                        "container_id": "tradingview_chart",
+                        "symbol": "BINANCE:BTCUSDT",
+                        "interval": "D",
+                        "theme": "dark",
+                        "style": "1",
+                        "locale": "en",
+                        "toolbar_bg": "#f1f3f6",
+                        "enable_publishing": false
+                    });
+                </script>
+            </div>
+
+            <button onclick="logout()">Logout</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
